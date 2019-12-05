@@ -20,9 +20,7 @@ var ScriptPhase = require("./script-phase");
  * injectPostBuildScript: module.exports.injectPostBuildScript,
  * removePostBuildScript: module.exports.removePostBuildScript}}
  */
-module.exports = function(context){ 
-  
-   var xcode = context.requireCordovaModule("xcode");
+module.exports = {
 
   /**
    * Script title
@@ -158,7 +156,9 @@ module.exports = function(context){
    * @returns {*}
    */
   getXcodeProject: function (context) {
+    var xcode = context.requireCordovaModule("xcode");
     return xcode.project(this.xcodePath(context));
+    
   },
 
   /**
