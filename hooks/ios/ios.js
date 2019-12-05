@@ -3,7 +3,6 @@ var fs = require("fs");
 var path = require("path");
 var newrelic = require("../newrelic");
 var ScriptPhase = require("./script-phase");
-var xcode = require("xcode");
 
 /**
  * @desc iOS Object to remove and add New Relic build scripts to the xCode Project.
@@ -21,7 +20,9 @@ var xcode = require("xcode");
  * injectPostBuildScript: module.exports.injectPostBuildScript,
  * removePostBuildScript: module.exports.removePostBuildScript}}
  */
-module.exports = {
+module.exports = function(context){ 
+  
+   var xcode = context.requireCordovaModule("xcode");
 
   /**
    * Script title
