@@ -150,13 +150,24 @@ module.exports = {
     }
   },
 
+  isCordovaAbove:function(context, version) {
+    var cordovaVersion = context.opts.cordova.version;
+    console.log(cordovaVersion);
+    var sp = cordovaVersion.split('.');
+    return parseInt(sp[0]) >= version;
+  },
+
   /**
    * Get the xCode project
    * @param context {Object} - Cordova context
    * @returns {*}
    */
   getXcodeProject: function (context) {
-    var xcode = require("xcode");
+    if(this.isCordovaAbove(context,8)){
+      var xcode = require("xcode");
+    }else{
+      var xcode = context.requireCordovaModule("xcode");
+    }
     return xcode.project(this.xcodePath(context));
     
   },
